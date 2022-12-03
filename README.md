@@ -1,15 +1,15 @@
-###DIO - Login 
+# DIO - Login 
 
 Aplicação para estudo da Biblioteca React Js
 
-Foram utilizadas as bibliotecas:
+### Para navegação e ícones:
 
-#- react-router-dom
-#- react-icons
+- react-router-dom
+- react-icons
 
 
-Para a estilizadação:
+### Para a estilizadação:
 
-#- styled-components
+- styled-components
 
 
