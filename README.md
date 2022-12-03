@@ -14,7 +14,7 @@ Aplicação para estudo da Biblioteca React Js
 
 ### Para a validação do formulário:
 
-- react-hook-forms
+- react-hook-forms                                                         
    Hooks: useForms e yupResolver
 
 
