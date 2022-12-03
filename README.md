@@ -12,4 +12,9 @@ Aplicação para estudo da Biblioteca React Js
 
 - styled-components
 
+### Para a validação do formulário:
+
+- react-hook-forms
+   Hooks: useForms e yupResolver
+
 
