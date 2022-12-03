@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import {MdEmail, MdLock} from "react-icons/md"
+import { MdEmail, MdLock } from "react-icons/md";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import { Button } from "../../components/button/button";
 import { Header } from "../../components/header/header";
@@ -14,16 +17,36 @@ import {
   Title,
   TitleLogin,
   Wrapper,
-  CriarText
+  CriarText,
 } from "./style";
 
-export function Login() {
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email("Esse e-mail não é válido.")
+      .required("Esse campo é obrigatório"),
+    password: yup
+      .string().min(5, "Sua senha precisa ter no mínimo 5 dígitos.")
+      .required("Esse campo é obrigatório"),
+  })
+  .required();
 
+export function Login() {
   const navigate = useNavigate();
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid }} = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange"
+  });
+  const onSubmit = (data) => console.log(data);
+
   const handleClickSignin = () => {
-    navigate('/feed');
-  }
+    navigate("/feed");
+  };
   return (
     <>
       <Header />
@@ -38,10 +61,23 @@ export function Login() {
           <Wrapper>
             <TitleLogin>Faça o seu cadastro</TitleLogin>
             <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
-            <form>
-              <Input placeholder="E-mail" leftIcon={<MdEmail/>} />
-              <Input placeholder="Senha" type="password" leftIcon={<MdLock/>} />
-              <Button title="Entrar" variant="secondary" onClick={handleClickSignin} type="button" />
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                control={control}
+                name="email"
+                errorMessage={errors?.email?.message}
+                placeholder="E-mail"
+                leftIcon={<MdEmail />}
+              />
+              <Input
+                control={control}
+                name="password"
+                errorMessage={errors?.password?.message}
+                placeholder="Senha"
+                type="password"
+                leftIcon={<MdLock />}
+              />
+              <Button title="Entrar" variant="secondary" type="submit" />
             </form>
             <Row>
               <EsqueciText>Esqueci minha senha</EsqueciText>
