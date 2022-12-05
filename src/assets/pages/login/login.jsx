@@ -8,6 +8,7 @@ import { Button } from "../../components/button/button";
 import { Header } from "../../components/header/header";
 import { Input } from "../../components/input/input";
 
+import { api } from "../../../services/api";
 import {
   Column,
   Container,
@@ -27,7 +28,8 @@ const schema = yup
       .email("Esse e-mail não é válido.")
       .required("Esse campo é obrigatório"),
     password: yup
-      .string().min(5, "Sua senha precisa ter no mínimo 5 dígitos.")
+      .string()
+      .min(5, "Sua senha precisa ter no mínimo 5 dígitos.")
       .required("Esse campo é obrigatório"),
   })
   .required();
@@ -38,15 +40,26 @@ export function Login() {
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid }} = useForm({
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
-    mode: "onChange"
+    mode: "onChange",
   });
-  const onSubmit = (data) => console.log(data);
-
-  const handleClickSignin = () => {
-    navigate("/feed");
+  const onSubmit = async (formData) => {
+    try {
+      const { data } = await api.get(
+        `users?email=${formData.email}&senha=${formData.password}`
+      );
+      if ( data.length === 1) {
+        navigate("/feed");
+      } else {
+        alert("E-mail ou senha inválidos.");
+      }
+    } catch {
+      alert("Houve um erro, tente novamente");
+    }
   };
+
   return (
     <>
       <Header />
