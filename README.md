@@ -17,4 +17,12 @@ Aplicação para estudo da Biblioteca React Js
 - react-hook-forms                                                         
    Hooks: useForms e yupResolver
 
+### Para criação de API fictícia:
+
+- json-server  
+
+### Para requisição da API:
+
+- Axios   
+   
 

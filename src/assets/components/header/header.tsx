@@ -13,8 +13,9 @@ import {
   UserPicture,
   Column,
 } from "./style";
+import { IHeader } from "./types";
 
-export function Header({ autenticado }) {
+export function Header({ autenticado }: IHeader) {
   return (
     <Wrapper>
       <Container>
@@ -36,8 +37,8 @@ export function Header({ autenticado }) {
           ) : (
             <>
               <MenuRight href="#">Home</MenuRight>
-              <Button title="Entrar" />
-              <Button title="Cadastrar" />
+              <Button title="Entrar"/>
+              <Button title="Cadastrar"/>
             </>
           )}
         </Row>
