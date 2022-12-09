@@ -38,4 +38,9 @@ export const TextContent = styled.p`
   line-height: 22px;
 
   color: #fff;
-`;  
+`; 
+
+export const ImageHome = styled.img`
+  width: 90%;
+  margin-left: 32px;
+  `

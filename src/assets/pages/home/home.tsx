@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/button/button";
 import { Header } from "../../components/header/header";
-import { Container, TextContent, TitleHighlight, Title } from "./style";
+import { Container, TextContent, TitleHighlight, Title, ImageHome } from "./style";
+import  image  from "../../images/home.png";
 
 export function Home() {
 
@@ -35,7 +36,7 @@ export function Home() {
           />
         </div>
         <div>
-          <img src="http://" alt="Imagem principal" />
+          <ImageHome src={image} alt="Imagem principal" />
         </div>
       </Container>
     </>
